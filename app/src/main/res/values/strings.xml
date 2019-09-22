@@ -32,4 +32,10 @@
     <string name="text_remove_sign">⌫</string>
     <string name="text_calculation_failed">Calculation Failed</string>
 
+
+    <string name="text_lab_1">Lab 1</string>
+    <string name="text_add_note">Add note</string>
+    <string name="text_filter">Filter</string>
+    <string name="text_search">Search</string>
+
 </resources>

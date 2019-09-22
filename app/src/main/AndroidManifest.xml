@@ -31,6 +31,10 @@
             android:name=".app.activity.Practice2Activity"
             android:configChanges="orientation|screenSize|keyboardHidden" />
 
+        <activity
+            android:name=".app.activity.Lab1Activity"
+            android:screenOrientation="sensorPortrait" />
+
     </application>
 
     <dist:module dist:instant="true" />
