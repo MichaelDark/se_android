@@ -8,13 +8,12 @@ import android.widget.LinearLayout;
 import android.widget.SeekBar;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import ua.temnokhud.R;
 import ua.temnokhud.app.model.InputColor;
 import ua.temnokhud.app.util.listeners.SeekBarProgressChangedListener;
 
-public class Practice1Activity extends AppCompatActivity {
+public class Practice1Activity extends BaseActivity {
 
     private LinearLayout lltRoot;
     private View vPalette;
@@ -25,14 +24,12 @@ public class Practice1Activity extends AppCompatActivity {
     private InputColor inputColor;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_practice_1);
-        onCreateViews(savedInstanceState);
-        onCreateListeners();
+    int getContentViewLayoutRes() {
+        return R.layout.activity_practice_1;
     }
 
-    private void onCreateViews(Bundle savedInstanceState) {
+    @Override
+    public void onCreateViews(Bundle savedInstanceState) {
         lltRoot = findViewById(R.id.activity_practice_1_llt_root);
         vPalette = findViewById(R.id.activity_practice_1_v_palette);
         skbRed = findViewById(R.id.activity_practice_1_skb_red);
@@ -44,14 +41,7 @@ public class Practice1Activity extends AppCompatActivity {
     }
 
     @Override
-    public void onConfigurationChanged(@NonNull Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        lltRoot.setOrientation(newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE
-                ? LinearLayout.HORIZONTAL
-                : LinearLayout.VERTICAL);
-    }
-
-    private void onCreateListeners() {
+    public void onCreateListeners() {
         skbRed.setOnSeekBarChangeListener((SeekBarProgressChangedListener)
                 (seekBar, i, b) -> setInputColor(inputColor.withRed(255 * i / 100)));
         skbGreen.setOnSeekBarChangeListener((SeekBarProgressChangedListener)
@@ -66,5 +56,12 @@ public class Practice1Activity extends AppCompatActivity {
         vPalette.setBackgroundColor(inputColor.getIntColor());
     }
 
+    @Override
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        lltRoot.setOrientation(newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE
+                ? LinearLayout.HORIZONTAL
+                : LinearLayout.VERTICAL);
+    }
 
 }

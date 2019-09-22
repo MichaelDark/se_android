@@ -1,23 +1,28 @@
 package ua.temnokhud.app.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.appcompat.app.AppCompatActivity;
+import android.widget.Button;
 
 import ua.temnokhud.R;
+import ua.temnokhud.app.util.ActivityUtils;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
+
+    private Button btnPractice1;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    int getContentViewLayoutRes() {
+        return R.layout.activity_main;
+    }
 
-        findViewById(R.id.activity_main_btn_practice_1).setOnClickListener(v -> {
-            Intent activityIntent = new Intent(this, Practice1Activity.class);
-            startActivity(activityIntent);
-        });
+    @Override
+    void onCreateViews(Bundle savedInstanceState) {
+        btnPractice1 = findViewById(R.id.activity_main_btn_practice_1);
+    }
+
+    @Override
+    void onCreateListeners() {
+        btnPractice1.setOnClickListener(v -> ActivityUtils.startActivity(this, Practice1Activity.class));
     }
 
 }
