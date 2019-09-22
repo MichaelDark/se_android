@@ -1,4 +1,4 @@
-package ua.temnokhud;
+package ua.temnokhud.app;
 
 import android.app.Application;
 
