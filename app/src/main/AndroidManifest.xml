@@ -27,6 +27,10 @@
             android:name=".app.activity.Practice1Activity"
             android:configChanges="orientation|screenSize|keyboardHidden" />
 
+        <activity
+            android:name=".app.activity.Practice2Activity"
+            android:configChanges="orientation|screenSize|keyboardHidden" />
+
     </application>
 
     <dist:module dist:instant="true" />

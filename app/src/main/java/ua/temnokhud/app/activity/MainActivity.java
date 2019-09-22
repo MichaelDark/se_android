@@ -9,6 +9,7 @@ import ua.temnokhud.app.util.ActivityUtils;
 public class MainActivity extends BaseActivity {
 
     private Button btnPractice1;
+    private Button btnPractice2;
 
     @Override
     int getContentViewLayoutRes() {
@@ -18,11 +19,13 @@ public class MainActivity extends BaseActivity {
     @Override
     void onCreateViews(Bundle savedInstanceState) {
         btnPractice1 = findViewById(R.id.activity_main_btn_practice_1);
+        btnPractice2 = findViewById(R.id.activity_main_btn_practice_2);
     }
 
     @Override
     void onCreateListeners() {
         btnPractice1.setOnClickListener(v -> ActivityUtils.startActivity(this, Practice1Activity.class));
+        btnPractice2.setOnClickListener(v -> ActivityUtils.startActivity(this, Practice2Activity.class));
     }
 
 }

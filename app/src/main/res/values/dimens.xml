@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="activity_practice_2_txv_operation_size">30sp</dimen>
+    <dimen name="activity_practice_2_txv_text_size">24sp</dimen>
+
+</resources>

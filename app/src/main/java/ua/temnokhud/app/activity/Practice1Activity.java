@@ -29,6 +29,11 @@ public class Practice1Activity extends BaseActivity {
     }
 
     @Override
+    int getActionBarTitleStringRes() {
+        return R.string.text_practice_1;
+    }
+
+    @Override
     public void onCreateViews(Bundle savedInstanceState) {
         lltRoot = findViewById(R.id.activity_practice_1_llt_root);
         vPalette = findViewById(R.id.activity_practice_1_v_palette);
