@@ -1,8 +1,12 @@
 package ua.temnokhud.app.activity;
 
 import android.app.AlertDialog;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.LinearLayoutCompat;
 
 import ua.temnokhud.R;
 import ua.temnokhud.app.model.CalculatorOperation;
@@ -10,6 +14,8 @@ import ua.temnokhud.app.util.Calculator;
 import ua.temnokhud.app.util.listeners.CalculatorListener;
 
 public class Practice2Activity extends BaseActivity implements CalculatorListener {
+
+    private LinearLayoutCompat lltRoot;
 
     private TextView btnStatement;
     private TextView btnRemove;
@@ -46,6 +52,8 @@ public class Practice2Activity extends BaseActivity implements CalculatorListene
 
     @Override
     void onCreateViews(Bundle savedInstanceState) {
+        lltRoot = findViewById(R.id.activity_practice_2_llt_root);
+
         btnStatement = findViewById(R.id.activity_practice_2_txv_statement);
         btnRemove = findViewById(R.id.activity_practice_2_txv_remove);
         btnClear = findViewById(R.id.activity_practice_2_txv_clear);
@@ -138,6 +146,14 @@ public class Practice2Activity extends BaseActivity implements CalculatorListene
                 .setTitle(R.string.text_calculation_failed)
                 .setNeutralButton(R.string.text_ok, (dialog, which) -> dialog.dismiss())
                 .show();
+    }
+
+    @Override
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        lltRoot.setOrientation(newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE
+                ? LinearLayoutCompat.HORIZONTAL
+                : LinearLayoutCompat.VERTICAL);
     }
 
 }
