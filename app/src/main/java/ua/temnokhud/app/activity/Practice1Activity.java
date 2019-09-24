@@ -4,10 +4,10 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.SeekBar;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.LinearLayoutCompat;
 
 import ua.temnokhud.R;
 import ua.temnokhud.app.model.InputColor;
@@ -15,7 +15,7 @@ import ua.temnokhud.app.util.listeners.SeekBarProgressChangedListener;
 
 public class Practice1Activity extends BaseActivity {
 
-    private LinearLayout lltRoot;
+    private LinearLayoutCompat lltRoot;
     private View vPalette;
     private SeekBar skbRed;
     private SeekBar skbGreen;
@@ -65,8 +65,8 @@ public class Practice1Activity extends BaseActivity {
     public void onConfigurationChanged(@NonNull Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         lltRoot.setOrientation(newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE
-                ? LinearLayout.HORIZONTAL
-                : LinearLayout.VERTICAL);
+                ? LinearLayoutCompat.HORIZONTAL
+                : LinearLayoutCompat.VERTICAL);
     }
 
 }
