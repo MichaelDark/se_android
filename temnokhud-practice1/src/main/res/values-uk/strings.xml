@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Темнохуд - ПЗ 1</string>
+    <string name="activity_main_button_label">Моя перша кнопка!</string>
+    <string name="activity_main_checkbox_label">Моя перша ластiвка!</string>
+    <string name="activity_main_text_view_label">Мiй перший текст!</string>
+    <string name="text_practice_1">\@string/app_name</string>
+</resources>

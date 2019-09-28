@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Темнохуд - ПЗ 2</string>
+    <string name="text_blue">Синiй</string>
+    <string name="text_green">Зелений</string>
+    <string name="text_practice_2">\@string/app_name</string>
+    <string name="text_red">Червоний</string>
+</resources>

@@ -1,0 +1,28 @@
+<resources>
+
+    <string name="app_name">Temnokhud - Practice 3</string>
+
+
+    <string name="text_practice_3">@string/app_name</string>
+    <string name="text_sum">+</string>
+    <string name="text_subtract">-</string>
+    <string name="text_multiply">×</string>
+    <string name="text_divide">/</string>
+    <string name="text_number_1">1</string>
+    <string name="text_number_2">2</string>
+    <string name="text_number_3">3</string>
+    <string name="text_number_4">4</string>
+    <string name="text_number_5">5</string>
+    <string name="text_number_6">6</string>
+    <string name="text_number_7">7</string>
+    <string name="text_number_8">8</string>
+    <string name="text_number_9">9</string>
+    <string name="text_number_0">0</string>
+    <string name="text_clear">Clear</string>
+    <string name="text_calculate">=</string>
+    <string name="text_calculation_result">Calculation Result</string>
+    <string name="text_ok">OK</string>
+    <string name="text_remove_sign">⌫</string>
+    <string name="text_calculation_failed">Calculation Failed</string>
+
+</resources>

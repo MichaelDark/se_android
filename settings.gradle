@@ -1,2 +1,2 @@
-include ':app'
+include ':app', ':temnokhud-practice2', ':basecomponents', ':temnokhud-practice3', ':temnokhud-practice1'
 rootProject.name='Android Software Engineering'
