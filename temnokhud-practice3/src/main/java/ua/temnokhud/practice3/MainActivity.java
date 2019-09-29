@@ -52,7 +52,6 @@ public class MainActivity extends BaseActivity implements CalculatorListener {
         return R.string.text_practice_3;
     }
 
-    //TODO
     @Override
     protected void onRestoreState(@NonNull Bundle savedInstanceState) {
         calculator = savedInstanceState.getParcelable(STATE_CALCULATOR);
