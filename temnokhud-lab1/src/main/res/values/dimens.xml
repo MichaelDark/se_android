@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="list_tile_note_gallery_image_size">64dp</dimen>
+
+</resources>

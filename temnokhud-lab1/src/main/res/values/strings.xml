@@ -1,0 +1,10 @@
+<resources>
+
+    <string name="app_name">Temnokhud - Lab 1</string>
+
+
+    <string name="text_add_note">Add note</string>
+    <string name="text_filter">Filter</string>
+    <string name="text_search">Search</string>
+
+</resources>
