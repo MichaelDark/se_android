@@ -1,0 +1,11 @@
+<resources>
+
+    <string name="app_name">Temnokhud - Practice 1</string>
+
+
+    <string name="text_practice_1">@string/app_name</string>
+    <string name="activity_main_checkbox_label">My first (no) checkbox!</string>
+    <string name="activity_main_text_view_label">My first (no) textview!</string>
+    <string name="activity_main_button_label">My first (no) button!</string>
+
+</resources>
