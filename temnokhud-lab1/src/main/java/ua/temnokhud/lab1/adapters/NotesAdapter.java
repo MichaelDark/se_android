@@ -1,10 +1,8 @@
 package ua.temnokhud.lab1.adapters;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
-import android.view.GestureDetector;
+import android.app.Activity;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
@@ -12,13 +10,13 @@ import android.widget.Filterable;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import ua.temnokhud.lab1.EditNoteActivity;
 import ua.temnokhud.lab1.R;
 import ua.temnokhud.lab1.model.Importance;
 import ua.temnokhud.lab1.model.Note;
@@ -102,7 +100,6 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteViewHold
         private TextView txvTitle;
         private TextView txvDate;
         private TextView txvDescription;
-        private GestureDetector gestureDetector;
 
         private Note note;
 
@@ -117,10 +114,6 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteViewHold
             txvDescription = itemView.findViewById(R.id.list_tile_note_txv_description);
         }
 
-        private Context getContext() {
-            return itemView.getContext();
-        }
-
         @SuppressLint("ClickableViewAccessibility")
         private void bind(@NonNull Note note) {
 //            imvGallery.setBackground();
@@ -132,19 +125,17 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteViewHold
             txvDate.setText(note.getCreatedDateTime().toString());
             txvDescription.setText(note.getDescription());
 
-            gestureDetector = new GestureDetector(getContext(), new GestureDetector.SimpleOnGestureListener() {
-                public void onLongPress(MotionEvent e) {
-                    onNoteLongPress(note);
-                }
-            });
 
-            itemView.setOnTouchListener((view, event) -> gestureDetector.onTouchEvent(event));
+            itemView.setOnClickListener(v -> onNoteClick(note));
         }
 
-        private void onNoteLongPress(@NonNull Note note) {
-            new AlertDialog.Builder(getContext())
-                    .setNeutralButton("OK", (dialog, which) -> dialog.dismiss())
-                    .show();
+        private void onNoteClick(@NonNull Note note) {
+            Activity activity = (Activity) itemView.getContext();
+            EditNoteActivity.openEditActivity(activity, note);
+
+//            new AlertDialog.Builder(getContext())
+//                    .setNeutralButton("OK", (dialog, which) -> dialog.dismiss())
+//                    .show();
         }
 
     }

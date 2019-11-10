@@ -10,15 +10,33 @@
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/action_filter_notes"
-        android:icon="@drawable/ic_filter_button"
-        android:title="@string/text_filter"
-        app:showAsAction="never" />
-
-    <item
         android:id="@+id/action_add_note"
         android:icon="@drawable/ic_add_button"
         android:title="@string/text_add_note"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_filter_minor"
+        android:checkable="true"
+        android:icon="@drawable/ic_filter_button"
+        android:title="@string/text_minor"
+        android:checked="true"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_filter_major"
+        android:checkable="true"
+        android:icon="@drawable/ic_filter_button"
+        android:checked="true"
+        android:title="@string/text_major"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_filter_critical"
+        android:checkable="true"
+        android:icon="@drawable/ic_filter_button"
+        android:checked="true"
+        android:title="@string/text_critical"
         app:showAsAction="never" />
 
 </menu>

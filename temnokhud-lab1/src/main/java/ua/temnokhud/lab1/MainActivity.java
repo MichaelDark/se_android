@@ -2,26 +2,28 @@ package ua.temnokhud.lab1;
 
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
+import lombok.var;
 import ua.temnokhud.basecomponets.BaseActivity;
 import ua.temnokhud.lab1.adapters.NotesAdapter;
+import ua.temnokhud.lab1.data.Database;
 import ua.temnokhud.lab1.model.Importance;
-import ua.temnokhud.lab1.model.Note;
 import ua.temnokhud.lab1.utils.listeners.SearchViewQueryTextChangedListener;
 
 public class MainActivity extends BaseActivity {
@@ -29,8 +31,7 @@ public class MainActivity extends BaseActivity {
 
     private RecyclerView rcvNotes;
     private NotesAdapter rcvNotesAdapter;
-
-    private List<Note> notes;
+    private Menu menu;
 
     @Override
     protected int getContentViewLayoutRes() {
@@ -54,14 +55,7 @@ public class MainActivity extends BaseActivity {
     protected void onCreateViews(Bundle savedInstanceState) {
         rcvNotes = findViewById(R.id.activity_lab_1_rcv_notes);
 
-//        notes = new ArrayList<>();
-        notes = Arrays.asList(
-                new Note(1, Importance.MINOR.getId(), new Date(), null, "Title 1", "Description 1"),
-                new Note(2, Importance.MAJOR.getId(), new Date(), null, "Title 2", "Description 2"),
-                new Note(3, Importance.CRITICAL.getId(), new Date(), null, "Title 3", "Description 3"),
-                new Note(4, Importance.MINOR.getId(), new Date(), null, "Title 4", "Description 4")
-        );
-
+        var notes = Database.Provider.getDatabase().getNotes();
         rcvNotesAdapter = new NotesAdapter(notes);
         rcvNotes.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         rcvNotes.setAdapter(rcvNotesAdapter);
@@ -85,6 +79,8 @@ public class MainActivity extends BaseActivity {
             searchView.setIconifiedByDefault(true);
         }
 
+        this.menu = menu;
+
         return true;
     }
 
@@ -93,17 +89,71 @@ public class MainActivity extends BaseActivity {
         rcvNotesAdapter.getFilter().filter(queryText);
     }
 
+    private List<Importance> getFilterImportances() {
+        List<Importance> importances = new ArrayList<>();
+        if (menu != null) {
+            for (int i = 0; i < menu.size(); i++) {
+                MenuItem item = menu.getItem(i);
+
+                if (item.isChecked()) {
+                    int itemId = item.getItemId();
+                    switch (itemId) {
+                        case R.id.action_filter_minor:
+                            importances.add(Importance.MINOR);
+                            break;
+                        case R.id.action_filter_major:
+                            importances.add(Importance.MAJOR);
+                            break;
+                        case R.id.action_filter_critical:
+                            importances.add(Importance.CRITICAL);
+                            break;
+                    }
+                }
+            }
+        } else {
+            importances = new ArrayList<>(Arrays.asList(Importance.values()));
+        }
+        return importances;
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_filter_notes:
-                Toast.makeText(this, "Filter", Toast.LENGTH_LONG).show();
-                return true;
+            case R.id.action_filter_minor:
+            case R.id.action_filter_major:
+            case R.id.action_filter_critical:
+                item.setChecked(!item.isChecked());
+                updateNotes();
+                return false;
             case R.id.action_add_note:
-                Toast.makeText(this, "Add note", Toast.LENGTH_LONG).show();
+                EditNoteActivity.openCreateActivity(this);
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void updateNotes() {
+        var filterImportances = getFilterImportances();
+        var filteredNotes = Database.Provider.getDatabase().getNotes(filterImportances);
+
+        var adapter = rcvNotes.getAdapter();
+        if (adapter instanceof NotesAdapter) {
+            NotesAdapter notesAdapter = (NotesAdapter) adapter;
+            notesAdapter.updateNotes(filteredNotes);
+
+            String query = "";
+            if (menu != null) {
+                SearchView searchView = (SearchView) menu.findItem(R.id.action_search_notes).getActionView();
+                query = searchView.getQuery().toString();
+            }
+            rcvNotesAdapter.getFilter().filter(query);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        updateNotes();
     }
 
 }
